@@ -8,8 +8,9 @@
     CDVPluginResult* pluginResult = nil;
     
     NSString* scheme = [command.arguments objectAtIndex:0];
+    NSURL* scheme_url = [NSURL URLWithString:[scheme stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]]];
     
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:scheme]]) {
+    if ([[UIApplication sharedApplication] canOpenURL:scheme_url]) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:(true)];
     }
     else {
@@ -25,9 +26,10 @@
     CDVPluginResult* pluginResult = nil;
     
     NSString* scheme = [command.arguments objectAtIndex:0];
+    NSURL* scheme_url = [NSURL URLWithString:[scheme stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]]];
     
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:scheme]]) {
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:scheme]];
+    if ([[UIApplication sharedApplication] canOpenURL:scheme_url]) {
+        [[UIApplication sharedApplication] openURL:scheme_url];
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:(true)];
     }
     else {
@@ -43,8 +45,9 @@
     CDVPluginResult* pluginResult = nil;
     
     NSString* scheme = [command.arguments objectAtIndex:0];
+    NSURL* scheme_url = [NSURL URLWithString:[scheme stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]]];
     
-    if ([[UIApplication sharedApplication] openURL:[NSURL URLWithString:scheme]]) {
+    if ([[UIApplication sharedApplication] openURL:scheme_url]) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:(true)];
     }
     else {
